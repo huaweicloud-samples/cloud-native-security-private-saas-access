@@ -1,0 +1,197 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.8",
+  "serial": 147,
+  "lineage": "5bd2bb5c-435a-a5aa-62e6-b92a28684edf",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.elb_vpcep_service[0]",
+      "mode": "data",
+      "type": "huaweicloud_elb_flavors",
+      "name": "l4",
+      "provider": "provider[\"registry.terraform.io/huaweicloud/huaweicloud\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "bandwidth": null,
+            "category": null,
+            "cps": null,
+            "flavor_id": null,
+            "flavor_sold_out": null,
+            "flavors": [
+              {
+                "bandwidth": 200,
+                "category": 0,
+                "cps": 40000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "3835daa3-99ac-4590-98a7-116ae8ac0e77",
+                "lcu": 40,
+                "max_connections": 2000000,
+                "name": "L4_flavor.elb.s1.medium",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 1000,
+                "category": 0,
+                "cps": 200000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "6f36c3e1-3048-474c-b552-a2c87cd29a84",
+                "lcu": 200,
+                "max_connections": 10000000,
+                "name": "L4_flavor.elb.s1.large",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 100,
+                "category": 0,
+                "cps": 20000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "739d8b0a-bb91-4f2c-b073-0563fa240142",
+                "lcu": 20,
+                "max_connections": 1000000,
+                "name": "L4_flavor.elb.s2.small",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 10000,
+                "category": 0,
+                "cps": 400000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "7c836c36-0da6-46ab-8142-2023b620ce7e",
+                "lcu": 2000,
+                "max_connections": 20000000,
+                "name": "L4_flavor.elb.s2.extra-large",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 5000,
+                "category": 0,
+                "cps": 400000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "89c07f74-4ae6-4ba5-9dea-a6c31cb416a7",
+                "lcu": 1000,
+                "max_connections": 20000000,
+                "name": "L4_flavor.elb.s1.extra-large",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 2000,
+                "category": 0,
+                "cps": 400000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "a5e03fd2-66de-4e86-93b7-192cf41be00a",
+                "lcu": 400,
+                "max_connections": 20000000,
+                "name": "L4_flavor.elb.s2.large",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 400,
+                "category": 0,
+                "cps": 80000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "e86cff2b-0476-4d6e-be86-5b4eeb34c800",
+                "lcu": 80,
+                "max_connections": 4000000,
+                "name": "L4_flavor.elb.s2.medium",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              },
+              {
+                "bandwidth": 50,
+                "category": 0,
+                "cps": 10000,
+                "flavor_sold_out": false,
+                "https_cps": 0,
+                "id": "ec6df27e-8ae9-45e3-828f-a6de45e3e109",
+                "lcu": 10,
+                "max_connections": 500000,
+                "name": "L4_flavor.elb.s1.small",
+                "public_border_group": "center",
+                "qps": 0,
+                "shared": true,
+                "type": "L4"
+              }
+            ],
+            "id": "3e58bf91-29d7-55e2-ab6c-48d370ed96a9",
+            "ids": [
+              "3835daa3-99ac-4590-98a7-116ae8ac0e77",
+              "6f36c3e1-3048-474c-b552-a2c87cd29a84",
+              "739d8b0a-bb91-4f2c-b073-0563fa240142",
+              "7c836c36-0da6-46ab-8142-2023b620ce7e",
+              "89c07f74-4ae6-4ba5-9dea-a6c31cb416a7",
+              "a5e03fd2-66de-4e86-93b7-192cf41be00a",
+              "e86cff2b-0476-4d6e-be86-5b4eeb34c800",
+              "ec6df27e-8ae9-45e3-828f-a6de45e3e109"
+            ],
+            "list_all": null,
+            "max_connections": null,
+            "name": null,
+            "public_border_group": null,
+            "qps": null,
+            "region": "cn-north-4",
+            "shared": null,
+            "type": "L4"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "var",
+      "config_addr": "var.apig_edition",
+      "status": "unknown",
+      "objects": null
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.elb_listener_protocol",
+      "status": "unknown",
+      "objects": null
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.elb_vpcep_service.var.listener_protocol",
+      "status": "unknown",
+      "objects": null
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.apig_vpcep_service.var.edition",
+      "status": "unknown",
+      "objects": null
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# 复制为 terraform.tfvars 后按实际环境填写；凭据与区域由华为云 provider 从环境变量读取，不在此文件填写
+# 部署前请先设置：HW_ACCESS_KEY / HW_SECRET_KEY / HW_REGION_NAME
+
+name_prefix        = "privsaas"
+vpc_id             = "<provider-vpc-id>"
+ipv4_subnet_id     = "<provider-subnet-ipv4-subnet-id>"
+availability_zones = ["cn-north-4a", "cn-north-4b"]
+
+# 后端服务私网地址（IP 型后端）
+backend_addresses = ["10.0.1.21", "10.0.1.22"]
+backend_port      = 8080
+
+# HTTPS 在负载均衡侧终结 TLS；改为 TCP 则为四层透传，不再需要证书
+listener_protocol = "HTTPS"
+listener_port     = 443
+certificate_id    = ""
+
+# 消费方网段白名单，留空表示不限制
+access_cidrs = []
+
+endpoint_service_name      = "privsaas-svc"
+endpoint_service_approval  = false
+endpoint_service_permissions = []
+
+create_private_zone = true
+private_zone_name   = "saas.internal"

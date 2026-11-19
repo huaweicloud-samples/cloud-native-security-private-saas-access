@@ -1,0 +1,89 @@
+# 根模块变量示例。
+#
+# 凭据通过华为云 Provider 隐式环境变量提供（不要写入任何文件）：
+#   export HW_ACCESS_KEY="<AK>"
+#   export HW_SECRET_KEY="<SK>"
+#   export HW_REGION_NAME="cn-north-4"
+#
+# 本次部署范围：仅模式一（ELB 直连），监听器用 TCP 透传（不需证书）。
+# 进入 infra/ 目录执行：terraform init -backend=false && terraform plan
+
+region_name = "cn-north-4"
+
+# 部署开关：仅模式一（ELB 直连）
+deploy_elb      = true
+deploy_apig     = true
+deploy_consumer = true
+
+tags = {
+  project = "private-saas"
+  repo    = "private-saas-vpcep"
+}
+
+# ---------------- 模式一：负载均衡直连（独享型应用型 ELB + 终端节点服务） ----------------
+# VPC 与子网由 vpc_baseline 模块自动创建，无需在此填写
+elb_availability_zones = ["cn-north-4a"] # 单可用区，与基线子网对齐
+elb_l4_flavor_name     = "L4_flavor.elb.s1.small"
+elb_listener_protocol  = "TCP" # 本次用 TCP 透传，不需证书；改 HTTPS 时需提供证书
+elb_listener_port      = 443
+elb_backend_protocol   = "TCP"
+elb_backend_port       = 8080
+elb_backend_addresses  = [] # 可先留空，部署后按需添加后端 IP
+# TCP 透传不需要证书；若改 HTTPS，请通过环境变量提供：
+#   export TF_VAR_elb_certificate_content=...
+#   export TF_VAR_elb_private_key_content=...
+elb_certificate_content = ""
+elb_private_key_content = ""
+elb_access_cidrs       = []
+elb_health_check = {
+  protocol    = "HTTP"
+  interval    = 5
+  timeout     = 3
+  max_retries = 3
+  url_path    = "/health"
+  port        = 8080
+}
+elb_endpoint_service_name      = "privsaas-svc"
+elb_endpoint_service_approval  = false
+elb_endpoint_service_permissions = []
+elb_create_private_zone = true
+elb_private_zone_name   = "saas.internal"
+
+# ---------------- 模式二：API 网关专享版（启用请将 deploy_apig 置 true） ----------------
+# VPC 与子网由 vpc_baseline 模块自动创建，无需在此填写
+apig_availability_zones = ["cn-north-4a"]
+apig_edition           = "BASIC"
+apig_access_cidrs      = []
+apig_api_name          = "private-echo"
+apig_api_request_protocol = "HTTPS"
+apig_api_request_method   = "ANY"
+apig_api_request_path     = "/health"
+apig_api_backend_address  = "192.168.1.181:8080"
+apig_api_backend_path     = "/health"
+apig_api_tags          = ["private", "vpcep"]
+apig_endpoint_whitelist = []
+apig_create_private_zone = false # 复用模式一的 saas.internal. zone，避免同名 zone 冲突
+apig_private_zone_name  = "saas.internal"
+
+# ---------------- 消费方：完成服务端部署后启用 deploy_consumer=true 并填写 ----------------
+consumer_endpoint_service_id   = ""
+consumer_endpoint_service_name = "privsaas-svc"
+consumer_vpc_id        = "vpc-consumer-xxxxxxxx"
+consumer_network_id   = "subnet-consumer-xxxxxxxx (取子网资源的 subnet_id 字段)"
+consumer_ip_address   = null
+consumer_enable_dns   = true
+consumer_enable_whitelist = false
+consumer_whitelist    = []
+consumer_private_zone_id   = ""
+consumer_private_zone_name = "saas.internal"
+consumer_record_name = "saas"
+consumer_record_ttl  = 300
+
+# ---------------- 端到端验证补充（模式一后端虚机 + 消费方跨 VPC 私连） ----------------
+# 两台虚机密码通过环境变量提供（不要写入文件）：
+#   export TF_VAR_backend_vm_admin_pass="<强密码>"
+#   export TF_VAR_consumer_vm_admin_pass="<强密码>"
+backend_vm_flavor       = "s6.large.2"
+consumer_vpc_cidr       = "192.168.0.0/16"
+consumer_subnet_cidr    = "192.168.1.0/24"
+consumer_vm_flavor      = "s6.large.2"

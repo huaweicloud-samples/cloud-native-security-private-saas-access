@@ -1,0 +1,23 @@
+# 复制为 terraform.tfvars 后按实际环境填写；凭据与区域由华为云 provider 从环境变量读取，不在此文件填写
+# 部署前请先设置：HW_ACCESS_KEY / HW_SECRET_KEY / HW_REGION_NAME
+
+name_prefix        = "privsaas"
+vpc_id             = "<provider-vpc-id>"
+subnet_id          = "<provider-subnet-id>"
+availability_zones = ["cn-north-4a"]
+edition            = "BASIC"
+
+# 允许访问的消费方网段，留空表示不限制
+access_cidrs = []
+
+api_name             = "private-echo"
+api_request_protocol = "HTTPS"
+api_request_method   = "ANY"
+api_request_path     = "/v1/saas"
+api_backend_address  = "10.0.1.21:8080"
+api_backend_path     = "/v1/saas"
+
+endpoint_whitelist = []
+
+create_private_zone = true
+private_zone_name   = "saas.internal"
