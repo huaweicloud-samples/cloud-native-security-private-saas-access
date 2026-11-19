@@ -1,0 +1,22 @@
+# 复制为 terraform.tfvars 后按实际环境填写；凭据与区域由华为云 provider 从环境变量读取，不在此文件填写
+# 部署前请先设置：HW_ACCESS_KEY / HW_SECRET_KEY / HW_REGION_NAME
+
+name_prefix  = "consumer"
+
+# 二选一：优先填服务端输出的 endpoint_service_id
+endpoint_service_id   = ""
+endpoint_service_name = "<provider-endpoint-service-name>"
+
+# 消费方 VPC 与子网网络 ID（子网资源的 subnet_id 字段）
+vpc_id     = "<consumer-vpc-id>"
+network_id = "<consumer-subnet-network-id>"
+
+enable_dns       = true
+enable_whitelist = false
+whitelist        = []
+
+# 服务端输出的私网域名区域 ID；留空表示只创建终端节点，不写解析记录
+private_zone_id   = ""
+private_zone_name = "saas.internal"
+record_name       = "saas"
+record_ttl        = 300

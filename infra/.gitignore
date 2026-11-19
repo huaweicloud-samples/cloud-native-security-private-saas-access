@@ -1,0 +1,8 @@
+# Terraform 本地缓存与状态（不入库）
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+
+# 运行/调试日志
+*.log
